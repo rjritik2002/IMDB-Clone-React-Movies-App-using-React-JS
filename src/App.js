@@ -1,24 +1,21 @@
-import './App.css';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Header from './components/header/Header';
-import Home from './pages/home/home';
-import MovieList from './components/movieList/movieList';
-import Movie from './pages/movieDetail/movie';
+import React from 'react';
+import Home from './pages/Home';
+import CategoryMovies from './pages/CategoryMovies';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { routePath } from './constants/route';
 
-function App() {
-  return (
-    <div className="App">
-      <Router>
-        <Header />
-        <Routes>
-          <Route index element={<Home />}></Route>
-          <Route path='movie/:id' element={<Movie />}></Route>
-          <Route path='movies/:type' element={<MovieList />}></Route>
-          <Route path='/' element={<h1>Error Page</h1>}></Route>
-        </Routes>
-      </Router>
-    </div>
-  );
+const App = () => {
+    return (
+        <>
+            <BrowserRouter>
+                <Routes>
+                    <Route path={routePath.home} element={<Home />} />
+                    <Route path={routePath.categories} element={<CategoryMovies />} />
+                    <Route path={routePath.invalid} element={<Home />} />
+                </Routes>
+            </BrowserRouter>
+        </>
+    )
 }
 
 export default App;

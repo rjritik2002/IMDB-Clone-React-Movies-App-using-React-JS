@@ -1,14 +1,11 @@
-import axios from "axios";
+import axios from 'axios';
 
-export const getMovies = async (type) => {
-    const API_URL = `https://api.themoviedb.org/3/movie/${type ? type : "popular"}?api_key=4e44d9029b1270a757cddc766a1bcb63&language=en-US`;
-
+export const categoryMovies = async (API_URL) => {
     try {
-        const response = await axios.get(API_URL);
-        console.log(response.data.results);
-        return(response.data);
+        let response = await axios.get(API_URL);
+        return response.data;
     } catch (error) {
-        console.log("Error while callig API", error.message);
-        return error.response;
+        console.error('Error while calling the API:', error.message);
+        return error.response.data;
     }
 }
